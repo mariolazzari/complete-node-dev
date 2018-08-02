@@ -87,3 +87,32 @@ const getStatus = userdId => {
 getStatus(1)
     .then(status => console.log(status))
     .catch(err => console.log(err));
+
+// async / await version
+const getStatusAlt = async userID => {
+    /*
+    throw new Error("Promise rejected"); // reject the promise with error message
+    return "Mario"; // resolve the promis
+    */
+
+    const user = await getUser(userID); // await for promise resolve / reject
+    const grades = await getGrades(user.schoolId);
+
+    // compute average
+    let average = 0;
+    if (grades.length > 0) {
+        average =
+            grades.map(grade => grade.grade).reduce((a, b) => a + b) /
+            grades.length;
+    }
+
+    //console.log("Inside getStatusAlt", user, grades);
+    return `${user.name} has ${average}% in the class (Async)`;
+};
+
+// return a promisie resolved by a string
+//console.log(getStatusAlt());
+
+getStatusAlt(1)
+    .then(status => console.log(status))
+    .catch(err => console.log(err));
