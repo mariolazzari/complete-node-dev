@@ -1,0 +1,25 @@
+{
+  "name": "complete-node-dev",
+  "version": "1.0.0",
+  "description": "\"# complete-node-dev\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariolazzari/complete-node-dev.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariolazzari/complete-node-dev/issues"
+  },
+  "homepage": "https://github.com/mariolazzari/complete-node-dev#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
