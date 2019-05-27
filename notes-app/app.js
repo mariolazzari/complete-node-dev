@@ -1,27 +1,5 @@
-const validator = require("validator");
-const chalk = require("chalk");
 const yargs = require("yargs");
-
-//const fs = require("fs");
-//const utils = require("./utils");
 const notes = require("./notes");
-
-/*
-const output = "notes.txt";
-fs.writeFileSync(output, "File created by NodeJS.");
-fs.appendFileSync(output, "\nAppended text.");
-
-console.log(utils.name);
-console.log(utils.add(2, 5));
-*/
-
-notes.getNotes();
-
-// validator
-//console.log(validator.isEmail("mario@mario.con"));
-
-// chalk
-//console.log(chalk.green.bold.inverse("test"));
 
 // yargs version
 yargs.version("1.1.0");
@@ -42,31 +20,42 @@ yargs.command({
       type: "string"
     }
   },
-  handler: argv => {
-    console.log("Title:", argv.title);
-    console.log("Body:", argv.body);
-  }
+  handler: ({ title, body }) => notes.addNote(title, body)
 });
 
 // remove
 yargs.command({
   command: "remove",
   describe: "Remove note.",
-  handler: () => console.log("Delete note.")
+  builder: {
+    title: {
+      describe: "Type title to remove.",
+      demandOption: true,
+      type: "string"
+    }
+  },
+  handler: ({ title }) => notes.removeNote(title)
 });
 
 // list
 yargs.command({
   command: "list",
   describe: "List notes.",
-  handler: () => console.log("List notes.")
+  handler: () => notes.listNotes()
 });
 
 // read
 yargs.command({
   command: "read",
   describe: "Read note.",
-  handler: () => console.log("Read note.")
+  builder: {
+    title: {
+      describe: "Type title to read.",
+      demandOption: true,
+      type: "string"
+    }
+  },
+  handler: ({ title }) => notes.readNote(title)
 });
 
 // parse arguments line
