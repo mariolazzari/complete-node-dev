@@ -8,6 +8,8 @@ const getNotes = () => {
 const addNote = (title, body) => {
   const notes = loadNotes();
 
+  debugger;
+
   // check duplicates note
   const dupNotes = notes.filter(n => n.title === title);
   if (dupNotes.length === 0) {
